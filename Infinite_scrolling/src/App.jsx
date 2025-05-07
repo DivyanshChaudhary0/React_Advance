@@ -1,23 +1,22 @@
 import { useEffect } from "react";
-import { useState } from "react"
+import { useState } from "react";
 import Card from "./components/Card";
 import Shimmer from "./components/Shimmer";
+import Navbar from "./components/Navbar";
 
 function App() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const [data,setData] = useState([]);
-  const [loading,setLoading] = useState(false);
-
-  async function fetchData(){
+  async function fetchData() {
     setLoading(true);
-    try{
+    try {
       const response = await fetch("https://meme-api.com/gimme/20");
       const data = await response.json();
       console.log(data.memes);
       setLoading(false);
-      setData(prev => [...prev,...data.memes])
-    }
-    catch(err){
+      setData((prev) => [...prev, ...data.memes]);
+    } catch (err) {
       setLoading(false);
       console.log(err);
     }
@@ -27,28 +26,29 @@ function App() {
     fetchData();
 
     const handleScroll = () => {
-      if (window.scrollY + window.innerHeight >= document.body.scrollHeight-1) {
+      if (
+        window.scrollY + window.innerHeight >=
+        document.body.scrollHeight - 1
+      ) {
         fetchData();
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  },[])
-
+  }, []);
 
   return (
-    <div className="w-full min-h-screen p-8 bg-gray-200 flex flex-wrap items-center justify-center gap-8">
-      {
-        data?.map((val,idx) => {
-          return(
-            <Card val={val} key={idx} />
-          )
-        })
-      }
-      {loading && <Shimmer/>}
+    <div className="w-full min-h-screen bg-gray-200">
+      <Navbar />
+      <div className="p-8 flex flex-wrap items-center justify-center gap-8">
+        {data?.map((val, idx) => {
+          return <Card val={val} key={idx} />;
+        })}
+        {loading && <Shimmer />}
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
