@@ -7,16 +7,17 @@ function App() {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const tid = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   const handleStart = () => {
     if(isNaN(hours) || isNaN(minutes) || isNaN(seconds)){
       alert("Enter valid time")
       return;
     }
-    if(hours >= 0 && hours <= 12 || minutes >= 0 && minutes <= 59 || seconds >= 0 && seconds <=59){
-      alert("Enter valid time")
-      return;
-    }
+    // if((hours >= 0 && hours <= 12) || (minutes >= 0 && minutes <= 59) || (seconds >= 0 && seconds <= 59)){
+    //   alert("Enter valid time") 
+    //   return;
+    // }
     setIsStarted(true);
   }
 
@@ -52,6 +53,16 @@ function App() {
     clearInterval(tid.current);
   }
 
+  const handlePause = () => {
+    setIsPaused(true);
+    clearInterval(tid.current);
+  }
+
+  const handleResume = () => {
+    setIsPaused(false);
+    runTimer(hours,minutes,seconds);
+  }
+
   useEffect(() => {
     if(!isStarted) return;
 
@@ -85,7 +96,7 @@ function App() {
             <div> {minutes<10 ? `0${minutes}` : minutes}: </div>
             <div> {seconds<10 ? `0${seconds}` : seconds} </div>
           </div>
-          <button className="px-6 py-1 border border-black rounded cursor-pointer bg-orange-500 text-white">Pause</button>
+          {isPaused ? (<button onClick={handleResume} className="px-6 py-1 border border-black rounded cursor-pointer bg-orange-500 text-white">Resume</button>) : (<button onClick={handlePause} className="px-6 py-1 border border-black rounded cursor-pointer bg-orange-500 text-white">Pause</button>)}
           <button onClick={resetTimer} className="px-6 py-1 border border-black rounded cursor-pointer bg-red-500 text-white mx-4">Reset</button>
         </div>)}
 
