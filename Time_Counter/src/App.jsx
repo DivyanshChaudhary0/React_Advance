@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 function App() {
 
@@ -6,11 +6,39 @@ function App() {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-
+  const tid = useRef(null);
 
   const handleStart = () => {
     setIsStarted(true);
   }
+
+  const runTimer = (hours,minutes,seconds) => {
+    if(seconds > 0){
+      setSeconds(s => s-1);
+    }else if(minutes > 0 && seconds === 0){
+      setMinutes(m => m-1);
+      setSeconds(59);
+    }else{
+      setHours(h => h-1);
+      setMinutes(59);
+      setSeconds(59);
+    }
+
+    console.log(hours,minutes,seconds);
+  }
+
+  useEffect(() => {
+    if(!isStarted) return;
+
+    tid.current = setInterval(()=>{
+      runTimer(hours,minutes,seconds);
+    },1000)
+
+    return () => {
+      clearInterval(tid.current);
+    }
+
+  },[isStarted,hours,minutes,seconds])
 
 
   return (
