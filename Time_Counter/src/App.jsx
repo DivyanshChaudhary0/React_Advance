@@ -24,7 +24,20 @@ function App() {
       setSeconds(59);
     }
 
+    if(hours === 0 && minutes === 0 && seconds === 0){
+      setHours(0);
+      setMinutes(0);
+      setSeconds(0);
+      alert("Timer is completed")
+      clearInterval(tid.current);
+      return;
+    }
+
     console.log(hours,minutes,seconds);
+  }
+
+  const resetTimer = () => {
+    setIsStarted(false);
   }
 
   useEffect(() => {
@@ -47,9 +60,9 @@ function App() {
         <h1 className="font-bold text-3xl">Time Counter</h1>
         {!isStarted && (<div className="w-96 h-96 text-center border border-gray-700 rounded-xl">
           <div className="flex justify-center items-center gap-6 pt-10 pb-6">
-            <input type="text" onChange={(e) => setHours(e.target.value)} placeholder="HH" maxLength={2} className="w-14 h-10 text-center border border-black rounded outline-blue-600" />
-            <input type="text" onChange={(e) => setMinutes(e.target.value)} placeholder="MM" maxLength={2} className="w-14 h-10 text-center border border-black rounded outline-blue-600" />
-            <input type="text" onChange={(e) => setSeconds(e.target.value)} placeholder="SS" maxLength={2} className="w-14 h-10 text-center border border-black rounded outline-blue-600" />
+            <input type="text" onChange={(e) => setHours(parseInt(e.target.value))} placeholder="HH" maxLength={2} className="w-14 h-10 text-center border border-black rounded outline-blue-600" />
+            <input type="text" onChange={(e) => setMinutes(parseInt(e.target.value))} placeholder="MM" maxLength={2} className="w-14 h-10 text-center border border-black rounded outline-blue-600" />
+            <input type="text" onChange={(e) => setSeconds(parseInt(e.target.value))} placeholder="SS" maxLength={2} className="w-14 h-10 text-center border border-black rounded outline-blue-600" />
           </div>
           <button onClick={handleStart} className="px-6 py-1 border border-black rounded cursor-pointer bg-orange-500 text-white">Start</button>
         </div>)}
@@ -61,7 +74,7 @@ function App() {
             <div> {seconds<10 ? `0${seconds}` : seconds} </div>
           </div>
           <button className="px-6 py-1 border border-black rounded cursor-pointer bg-orange-500 text-white">Pause</button>
-          <button className="px-6 py-1 border border-black rounded cursor-pointer bg-red-500 text-white mx-4">Reset</button>
+          <button onClick={resetTimer} className="px-6 py-1 border border-black rounded cursor-pointer bg-red-500 text-white mx-4">Reset</button>
         </div>)}
 
       </div>
