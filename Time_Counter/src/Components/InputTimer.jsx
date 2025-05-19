@@ -1,10 +1,8 @@
 
-import React from 'react'
-
 const InputTimer = ({isStarted,setHours,setMinutes,setSeconds,handleStart}) => {
   return (
     <>
-        {!isStarted && (<div className="w-96 h-96 text-center border border-gray-700 rounded-xl">
+        {!isStarted && (<div className="w-96 h-44 text-center border border-gray-700 rounded-xl">
           <div className="flex justify-center items-center gap-6 pt-10 pb-6">
             <input type="text" onChange={(e) => setHours(parseInt(e.target.value))} placeholder="HH" maxLength={2} className="w-14 h-10 text-center border border-black rounded outline-blue-600" />
             <input type="text" onChange={(e) => setMinutes(parseInt(e.target.value))} placeholder="MM" maxLength={2} className="w-14 h-10 text-center border border-black rounded outline-blue-600" />

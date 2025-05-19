@@ -16,6 +16,12 @@ function App() {
       alert("Enter valid time")
       return;
     }
+    
+    if(hours <= 0 || minutes <= 0 || seconds <= 0){
+      alert("Enter valid time")
+      return;
+    }
+
     setIsStarted(true);
   }
 

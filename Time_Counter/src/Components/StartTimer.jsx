@@ -3,7 +3,7 @@
 const StartTimer = ({isStarted,hours,minutes,seconds,handleResume,handlePause,isPaused,resetTimer}) => {
   return (
     <>
-        {isStarted && (<div className="w-96 h-96 text-center border border-gray-700 rounded-xl">
+        {isStarted && (<div className="w-96 h-44 text-center border border-gray-700 rounded-xl">
           <div className="flex justify-center items-center gap-2 pt-10 pb-6 text-4xl">
             <div> {hours<10 ? `0${hours}` : hours}: </div>
             <div> {minutes<10 ? `0${minutes}` : minutes}: </div>
