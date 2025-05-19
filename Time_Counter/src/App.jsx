@@ -92,5 +92,3 @@ function App() {
 }
 
 export default App
-
-isStarted,hours,minutes,seconds,handleResume,handlePause,isPaused,resetTimer
