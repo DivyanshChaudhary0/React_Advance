@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react"
+import InputTimer from "./Components/InputTimer";
+import StartTimer from "./Components/StartTimer";
 
 function App() {
 
@@ -14,10 +16,6 @@ function App() {
       alert("Enter valid time")
       return;
     }
-    // if((hours >= 0 && hours <= 12) || (minutes >= 0 && minutes <= 59) || (seconds >= 0 && seconds <= 59)){
-    //   alert("Enter valid time") 
-    //   return;
-    // }
     setIsStarted(true);
   }
 
@@ -81,24 +79,12 @@ function App() {
     <>
       <div className="w-full h-screen flex flex-col gap-4 items-center justify-center">
         <h1 className="font-bold text-3xl">Time Counter</h1>
-        {!isStarted && (<div className="w-96 h-96 text-center border border-gray-700 rounded-xl">
-          <div className="flex justify-center items-center gap-6 pt-10 pb-6">
-            <input type="text" onChange={(e) => setHours(parseInt(e.target.value))} placeholder="HH" maxLength={2} className="w-14 h-10 text-center border border-black rounded outline-blue-600" />
-            <input type="text" onChange={(e) => setMinutes(parseInt(e.target.value))} placeholder="MM" maxLength={2} className="w-14 h-10 text-center border border-black rounded outline-blue-600" />
-            <input type="text" onChange={(e) => setSeconds(parseInt(e.target.value))} placeholder="SS" maxLength={2} className="w-14 h-10 text-center border border-black rounded outline-blue-600" />
-          </div>
-          <button onClick={handleStart} className="px-6 py-1 border border-black rounded cursor-pointer bg-orange-500 text-white">Start</button>
-        </div>)}
 
-        {isStarted && (<div className="w-96 h-96 text-center border border-gray-700 rounded-xl">
-          <div className="flex justify-center items-center gap-2 pt-10 pb-6 text-4xl">
-            <div> {hours<10 ? `0${hours}` : hours}: </div>
-            <div> {minutes<10 ? `0${minutes}` : minutes}: </div>
-            <div> {seconds<10 ? `0${seconds}` : seconds} </div>
-          </div>
-          {isPaused ? (<button onClick={handleResume} className="px-6 py-1 border border-black rounded cursor-pointer bg-orange-500 text-white">Resume</button>) : (<button onClick={handlePause} className="px-6 py-1 border border-black rounded cursor-pointer bg-orange-500 text-white">Pause</button>)}
-          <button onClick={resetTimer} className="px-6 py-1 border border-black rounded cursor-pointer bg-red-500 text-white mx-4">Reset</button>
-        </div>)}
+        <InputTimer isStarted={isStarted} setHours={setHours} setMinutes={setMinutes} setSeconds={setSeconds} handleStart={handleStart} />
+
+        <StartTimer isStarted={isStarted} hours={hours} minutes={minutes} seconds={seconds} handlePause={handlePause} 
+          handleResume={handleResume} isPaused={isPaused} resetTimer={resetTimer} 
+        />
 
       </div>
     </>
@@ -106,3 +92,5 @@ function App() {
 }
 
 export default App
+
+isStarted,hours,minutes,seconds,handleResume,handlePause,isPaused,resetTimer
