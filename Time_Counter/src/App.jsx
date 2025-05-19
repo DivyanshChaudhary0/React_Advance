@@ -9,6 +9,14 @@ function App() {
   const tid = useRef(null);
 
   const handleStart = () => {
+    if(isNaN(hours) || isNaN(minutes) || isNaN(seconds)){
+      alert("Enter valid time")
+      return;
+    }
+    if(hours >= 0 && hours <= 12 || minutes >= 0 && minutes <= 59 || seconds >= 0 && seconds <=59){
+      alert("Enter valid time")
+      return;
+    }
     setIsStarted(true);
   }
 
@@ -38,6 +46,10 @@ function App() {
 
   const resetTimer = () => {
     setIsStarted(false);
+    setHours(0);
+    setMinutes(0);
+    setSeconds(0);
+    clearInterval(tid.current);
   }
 
   useEffect(() => {
