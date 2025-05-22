@@ -35,7 +35,8 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+.acc-btn {
+  width: 400px;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -46,11 +47,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
+.acc-btn:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
+.acc-btn:focus,
+.acc-btn:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
@@ -62,7 +63,7 @@ button:focus-visible {
   a:hover {
     color: #747bff;
   }
-  button {
+  .acc-btn{
     background-color: #f9f9f9;
   }
 }
