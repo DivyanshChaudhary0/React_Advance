@@ -13,6 +13,17 @@ function App() {
 
   return (
     <div className='container'>
+      <div className='timer'>
+        <p>Hours: <span className='time'>00</span></p>
+        <p>Minutes: <span className='time'>00</span></p>
+        <p>Seconds: <span className='time'>00</span></p>
+      </div>
+
+      <div>
+        <button>Start</button>
+        <button>Pause</button>
+        <button>Reset</button>
+      </div>
 
     </div>
   )
