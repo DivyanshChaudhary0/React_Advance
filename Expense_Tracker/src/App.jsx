@@ -11,7 +11,11 @@ function App() {
 
   function submit(e){
     e.preventDefault();
-    setAllExpenses([...allExpenses,{expenseName, expenseValue}])
+    if(expenseName && expenseValue){
+      setAllExpenses([...allExpenses,{expenseName, expenseValue}])
+      setExpenseName("");
+      setExpenseValue("");
+    }
   }
 
   return (
@@ -34,7 +38,7 @@ function App() {
       </form>
 
       <ShowExpense allExpenses={allExpenses} />
-      
+
     </div>
   )
 }
