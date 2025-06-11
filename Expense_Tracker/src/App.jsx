@@ -11,8 +11,18 @@ function App() {
     <div>
       <h1>Expense Tracker</h1>
       <form>
-        <input type="text" placeholder='Enter expense name' />
-        <input type="text" placeholder='Enter expense value' />
+        <input 
+          type="text" 
+          placeholder='Enter expense name' 
+          value={expenseName}
+          onChange={(e) => setExpenseName(e.target.value)}
+        />
+        <input 
+          type="text" 
+          placeholder='Enter expense value' 
+          value={expenseValue}
+          onChange={(e) => setExpenseValue(e.target.value)}
+        />
         <button>Add</button>
       </form>
     </div>
