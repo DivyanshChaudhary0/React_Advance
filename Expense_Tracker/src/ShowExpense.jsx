@@ -24,7 +24,7 @@ const ShowExpense = ({ allExpenses }) => {
       <tfoot>
         <tr>
           <th>Total</th>
-          <th>₹5500</th>
+          <th>₹{allExpenses.length <= 0 ? 0 : allExpenses.reduce((acc,curr) => acc + parseInt(curr.expenseValue), 0)}</th>
         </tr>
       </tfoot>
     </table>
