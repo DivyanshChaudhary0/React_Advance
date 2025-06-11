@@ -1,16 +1,23 @@
 
 import { useState } from 'react'
 import './App.css'
+import ShowExpense from './ShowExpense';
 
 function App() {
 
   const [expenseName, setExpenseName] = useState("");
   const [expenseValue, setExpenseValue] = useState("");
+  const [allExpenses, setAllExpenses] = useState([]);
+
+  function submit(e){
+    e.preventDefault();
+    setAllExpenses([...allExpenses,{expenseName, expenseValue}])
+  }
 
   return (
     <div>
       <h1>Expense Tracker</h1>
-      <form>
+      <form onSubmit={submit}>
         <input 
           type="text" 
           placeholder='Enter expense name' 
@@ -25,6 +32,9 @@ function App() {
         />
         <button>Add</button>
       </form>
+
+      <ShowExpense allExpenses={allExpenses} />
+      
     </div>
   )
 }
